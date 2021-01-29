@@ -1,0 +1,49 @@
+{
+  "name": "p5.clickable",
+  "version": "1.0.0",
+  "description": "Event driven, easy-to-use button library for p5.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "dist/p5.clickable.js",
+  "module": "dist/p5.clickable.esm.js",
+  "jsdelivr": "dist/p5.clickable.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "nodemon --watch src/ --exec npm run build",
+    "dev": "concurrently \"npm run examples:serve\" \"npm run watch\"",
+    "test": "jest",
+    "examples:serve": "browser-sync ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lartu/p5.clickable.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lartu/p5.clickable/issues"
+  },
+  "homepage": "https://github.com/Lartu/p5.clickable#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.1.0",
+    "browser-sync": "^2.26.13",
+    "concurrently": "^5.3.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "p5": "^1.2.0",
+    "rollup": "^2.36.2",
+    "rollup-plugin-legacy": "^1.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  },
+  "dependencies": {
+    "gsap": "^3.6.0"
+  }
+}

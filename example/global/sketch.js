@@ -2,10 +2,11 @@ var canvas;
 var click1;
 var click2;
 var click3;
+var click4;
 var clickImg;
 
-function preload(){
-  clickImg = loadImage('./logo.png');
+function preload() {
+  clickImg = loadImage("./logo.png");
 }
 function setup() {
   createCanvas(400, 400);
@@ -18,23 +19,23 @@ function setup() {
     this.color = "#AAAAFF";
     this.textColor = "#FFFFFF";
     this.text = "Yay!";
-  }
+  };
   //This function is ran when the clickable is NOT hovered.
   click1.onOutside = function () {
     this.color = "#EEEEEE";
     this.text = "Hello there!";
     this.textColor = "#000000";
-  }
+  };
   //This function is ran when the clickable is pressed.
   click1.onPress = function () {
     this.stroke = "#FF0000";
-  }
+  };
   //This funcion is ran when the cursor was pressed and then
   //rleased inside the clickable. If it was pressed inside and
   //then released outside this won't work.
   click1.onRelease = function () {
     this.x += 50;
-  }
+  };
 
   click2 = new Clickable();
   click2.cornerRadius = 0;
@@ -44,28 +45,46 @@ function setup() {
   click2.resize(250, 100);
   click2.onOutside = function () {
     this.color = "#FFFFFF";
-  }
+  };
   click2.onHover = function () {
     this.color = "#AA33AA";
-  }
+  };
   click2.onPress = function () {
     alert("Hi there!");
-  }
+  };
 
   click3 = new Clickable();
   click3.image = clickImg;
-  click3.locate(250,250);
-  click3.resize(100,100);
+  click3.locate(250, 250);
+  click3.resize(100, 100);
   click3.text = "";
   click3.onHover = function () {
     this.color = "#AA33AA";
     this.noTint = false;
     this.tint = "#FF0000";
-  }
+  };
   click3.onOutside = function () {
     this.color = "#FFFFFF";
     this.noTint = true;
-  }
+  };
+
+  click4 = createClickable();
+
+  click4.size(60, 50).locate(20, 300);
+
+  click4
+    .onOutside(({ self }) => {
+      self.label("Hello!");
+      self.fill("white", { tween: true });
+      self.textColor("black");
+      self.translate([0, 0, 0], { tween: true });
+    })
+    .onHover(({ self, x, y }) => {
+      self.label("Hi!");
+      self.fill("purple", { tween: true });
+      self.textColor("white");
+      self.translate([0, -10, 0], { tween: true });
+    });
 }
 
 function draw() {
@@ -73,4 +92,5 @@ function draw() {
   click1.draw();
   click2.draw();
   click3.draw();
+  click4.draw();
 }
