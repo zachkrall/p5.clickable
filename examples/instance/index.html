@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Instance Mode Test</title>
+    </head>
+    <body>
+        <h1>Examples</h1>
+
+        <h2>Basic Button</h2>
+        <div id="canvas0"></div>
+
+        <h2>Image Button</h2>
+        <div id="canvas1"></div>
+
+        <h2>Multiple Buttons</h2>
+        <div id="canvas2"></div>
+
+        <script src="https://unpkg.com/p5"></script>
+        <script src="../../dist/p5.clickable.js"></script>
+        <script>
+            const sketch0 = (p) => {
+                let button, canvas
+
+                p.setup = () => {
+                    canvas = p.createCanvas(300, 300)
+                    canvas.parent('#canvas0')
+                    button = p.Clickable()
+
+                    button.locate(50, 50)
+
+                    button.onOutside = function () {
+                        button.color = 'blue'
+                    }
+
+                    button.onHover = function () {
+                        button.color = 'red'
+                    }
+                }
+
+                p.draw = () => {
+                    p.background(140)
+                    button.draw()
+                    p.text(
+                        `Coords: ${Math.ceil(p.mouseX)} ${Math.ceil(p.mouseY)}`,
+                        10,
+                        10
+                    )
+                }
+            }
+
+            const sketch1 = (p) => {
+                let button, canvas, img
+
+                p.preload = () => {
+                    clickImg = p.loadImage('../logo.png')
+                }
+
+                p.setup = () => {
+                    canvas = p.createCanvas(300, 300)
+                    canvas.parent('#canvas1')
+
+                    button = p.Clickable()
+
+                    button.image = img
+
+                    button.locate(50, 50)
+
+                    button.onOutside = function () {
+                        button.color = 'blue'
+                    }
+
+                    button.onHover = function () {
+                        button.color = 'red'
+                    }
+                }
+
+                p.draw = () => {
+                    p.background(140)
+                    button.draw()
+                }
+            }
+
+            const sketch2 = (p) => {
+                let button, canvas
+
+                p.setup = () => {
+                    canvas = p.createCanvas(300, 300)
+                    canvas.parent('#canvas2')
+                    button = p.Clickable()
+
+                    button.locate(50, 50)
+
+                    button.onOutside = function () {
+                        button.color = 'blue'
+                    }
+
+                    button.onHover = function () {
+                        button.color = 'red'
+                    }
+                }
+
+                p.draw = () => {
+                    p.background(140)
+                    button.draw()
+                }
+            }
+
+            new p5(sketch0)
+            new p5(sketch1)
+            new p5(sketch2)
+        </script>
+    </body>
+</html>
